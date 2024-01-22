@@ -18,7 +18,7 @@ def main():
             dcc.Slider(0, 5, 0.01, value=0, id='imaginary_constant', marks=None,
                        tooltip={"placement": "bottom", "always_visible": True}),
             html.P("Max Orbit Iterations"),
-            dcc.Slider(0, 20, 1, value=10, id='max_iter', marks=None,
+            dcc.Slider(0, 50, 1, value=10, id='max_iter', marks=None,
                        tooltip={"placement": "bottom", "always_visible": True}),
         ]
     )
@@ -31,12 +31,12 @@ def main():
          Input('max_iter', 'value')]
     )
     def generate_julia_image(real, imaginary, max_iter):
-        image = np.zeros((2500, 2500))
+        image = np.zeros((1000, 1000))
 
-        for x in range(2500):
-            for y in range(2500):
-                zx = -2 + (x / (2500 - 1)) * (2 - -2)
-                zy = -2 + (y / (2500 - 1)) * (2 - -2)
+        for x in range(1000):
+            for y in range(1000):
+                zx = -1.6 + (x / (1000 - 1)) * (1.6 - -1.6)
+                zy = -1.6 + (y / (1000 - 1)) * (1.6 - -1.6)
 
                 value = julia_fractal(complex(zx, zy), complex(real, imaginary), max_iter)
                 image[y, x] = value
